@@ -1,0 +1,53 @@
+
+-- Database: computadoras
+
+-- DROP DATABASE computadoras;
+
+CREATE DATABASE computadoras
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Spain.1252'
+    LC_CTYPE = 'Spanish_Spain.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
+
+--crear tabla
+CREATE TABLE procesador(
+	id Serial,
+	modelo varchar (50),
+	marca  varchar (10),
+	nucleos varchar (10),
+	socket  varchar (10),
+	primary key (id)
+)
+
+--dar valores
+INSERT INTO procesador(
+	modelo, marca, nucleos, socket)
+	VALUES("AMD Threadripper", "AMD", "8", "11");
+
+--consulta sobre la tabla creada
+SELECT * FROM procesador;
+
+--crar una columna nueva
+ALTER TABLE procesador
+add column memoriaCache varchar (50)
+
+--añadir un valor a la columna 'memoriaCache'
+update procesador set  memoriaCache = '40 
+
+--añadir not null a una columna
+ALTER TABLE procesador
+alter column socket set not null
+
+--quitar not nul
+ALTER TABLE procesador
+alter column socket drop not null
+
+--borrar una columna
+ALTER TABLE procesador
+drop column marca
+

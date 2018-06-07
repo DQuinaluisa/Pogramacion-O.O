@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace operaciones
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string n1, n2;
+            
+            Console.Write(" ");
+            n1 = Console.ReadLine();
+            Console.Write(" ");
+            n2 = Console.ReadLine();
+
+            operaciones objOpera = new operaciones(n1, n2);
+            double suma,resta,multiplicacion, division, raiz;
+            suma = objOpera.getSuma();
+            Console.WriteLine("{0} suma ", suma);
+
+            resta = objOpera.getResta();
+            Console.WriteLine("{0} resta ", resta);
+
+            multiplicacion = objOpera.getMultiplicacion();
+            Console.WriteLine("{0} multiplicacion ", multiplicacion);
+
+            division = objOpera.getDivision();
+            Console.WriteLine("{0} division ", division);
+
+            raiz = objOpera.getRaiz();
+            Console.WriteLine("{0} raiz ", raiz);
+            Console.ReadLine();
+
+           
+
+        }
+    }
+}
