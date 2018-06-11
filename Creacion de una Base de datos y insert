@@ -1,0 +1,99 @@
+# Pogramacion-O.O
+
+--Crear un base de datos
+CRREATE DATABASE VentaComputadoras
+
+--Crear tablas
+CREATE TABLE DiscosDuros
+(
+	id Serial,
+	marca varchar(20),
+	almacenamiento varchar(20),
+	tipoDiscoDuro varchar(20),
+	velocidad varchar(20)
+	
+);
+CREATE TABLE Computadoras
+(
+	id Serial,
+	marca varchar(20),
+	color varchar(20),
+	tipoComputadora varchar(20)
+	
+);
+CREATE TABLE Mouse
+(
+	id Serial,
+	marca varchar(20),
+	modelo varchar(20),
+	tipoMouse varchar(20)
+	
+);
+CREATE TABLE Procesadores
+(
+	id Serial,
+	marca varchar(20),
+	socket varchar(20),
+	nucleos varchar(20),
+	velocidad varchar(20)
+	
+);
+CREATE TABLE TargetaMadre
+(
+	id Serial,
+	marca varchar(20),
+	modelo varchar(20),
+	zocalo varchar(20)
+	 	
+);
+CREATE TABLE Teclados
+(
+	id Serial,
+	marca varchar(20),
+	modelo varchar(20),
+	tipoTeclado varchar(20)	
+);
+
+
+--Insertar datos
+
+INSERT INTO Computadoras(
+             marca, color, tipocomputadora)
+    VALUES ('HP', 'Blanca','Lapto'),
+    ('Lenovo', 'Gris','Lapto'),
+    ('Asus', 'Negro','Lapto');
+
+INSERT INTO discosduros(
+             marca,almacenamiento,tipodiscoduro,velocidad)
+    VALUES ('Toshiba', '1 tera','externo','3600'),
+    ('WD Elements', '1 tera','externo','3600'),
+    ('Seagate FireCuda', '1 tera','interno','7200'),
+    ('Seagate Barracuda', '1 tera','interno','7200');
+     
+INSERT INTO mouse(
+             marca,modelo,tipomouse)
+    VALUES ('Microsoft ', 'Sculpt Mobile','escritorio'),
+    ('Mac ', 'Magic Mouse','ecr. bluetooth'),
+    ('Mad ', 'Catz M.O.U.S.9','escritorio');
+    
+INSERT INTO procesadores(
+             marca,socket,nucleos,velocidad)
+    VALUES ('Intel ', '1151','8 nucleos','3.5 Ghz'),
+    ('Intel ', '1151','4 nucleos','2.0 Ghz'),
+    ('Amd ', '1151','8 nucleos','3.5 Ghz'),
+    ('Intel ', '1151','8 nucleos','3.0 Ghz');
+
+INSERT INTO targetamadre(
+             marca,modelo,zocalo)
+    VALUES ('ASUS', 'Z170 Pro Gaming','1151'),
+    ('ASUS', 'ROG STRIX Z270E','1151'),
+	('ASUS', 'MAXIMUS X FORMULA','1151'),
+	('ASUS', 'PRIME Z270-A','1151');
+
+INSERT INTO Teclados(
+             marca,modelo,tipoTeclado)
+    VALUES ('Microsoft', 'Mobile Keyboard','multimedia'),
+    ('Microsoft', 'Sculpt Keyboard','flexible'),
+	('Apple', 'Keyboard Bluetooth','inalámbrico'),
+	('Logitech', 'Solar K750','multimedia');
+     
