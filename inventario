@@ -1,0 +1,178 @@
+-- creacion de la BDD
+CREATE DATABASE Inventario;
+
+--creacion de tablas Productos y tipo de productos
+
+CREATE TABLE TipoProductos(
+
+
+	idTipoProducto INT  not null auto_increment,
+
+    	nombreTipo varchar(20) not null,
+
+	primary key (idTipoProducto));  
+
+CREATE TABLE Productos(
+
+	
+	idProducto INT  not null auto_increment,
+
+  	nombre varchar(20) null,
+  	
+	fechaCaducidad date null,
+
+	cantidad int not null,
+
+   	precio decimal null,
+	
+	idTipoProducto INT not null,
+	primary key (idProducto),
+
+   	constraint idTipoProducto foreign key (idTipoProducto)
+
+	references TipoProductos (idTipoProducto));  
+
+--Tipo de personas
+
+CREATE TABLE Vendedores(
+
+	idVendedor int not null auto_increment,
+
+	sueldo decimal not null,
+
+	primary key (idVendedor)
+);
+
+
+CREATE TABLE Clientes(
+
+	idCliente int not null auto_increment,
+
+    	primary key (idCliente)
+);
+
+
+CREATE TABLE Proveedores(
+
+	idProveedor int not null auto_increment,
+
+   	nombreEmpresa varchar(20),
+
+	primary key (idProveedor)
+);
+
+-- Union en una tabla de todas las personas
+
+CREATE TABLE TipoPersona(
+
+	
+    idTipoPersona int not null auto_increment,
+ 
+   	    idCliente int not null,
+    idVendedor int not null,
+ 
+	    idProveedor int not null,
+    primary key (idTipoPersona),
+
+	    constraint idCliente foreign key (idCliente) references clientes (idCliente),
+
+	    constraint idVendedor foreign key (idVendedor) references vendedores (idVendedor),
+  
+	    constraint idProveedor foreign key (idProveedor) references proveedores (idProveedor)
+
+);
+
+--Contiene toda la informacion de las personas
+  	
+ CREATE TABLE Personas (
+
+
+
+	idPersona INT not null auto_increment,
+
+	nombre varchar (20) not null,
+
+   	apellido varchar (20) not null,
+
+	idTipoCedula int not null,
+	idTipoPersona int not null,
+	direccion varchar(20) not null,
+
+	telefono varchar (10) not null,
+
+	primary key (idPersona),
+
+	constraint idTipoCedula foreign key (idTipoCedula) references TipoCedulas (idTipoCedula),
+	constraint idTipoPersona foreign key (idTipoPersona) references TipoPersona (idTipoPersona));
+
+--Bodegas por productos
+
+CREATE TABLE Bodegas(
+
+	idBodega int not null auto_increment,
+
+ 	nombre varchar (20) not null,
+  
+  	idProducto int not null,
+
+    	primary key (idBodega),
+
+    	constraint idProducto foreign key (idProducto) references productos (idProducto)
+);
+	
+CREATE TABLE ProductosBodegas(
+	
+ 
+	idProductoBodega int not null auto_increment,
+
+    	idBodega int not null,
+
+    	cantida int not null,
+
+	primary key (idProductoBodega),
+	constraint idBodega foreign key (idBodega) references bodegas (idBodega)
+);
+
+--Factura y detalle
+
+CREATE TABLE Facturas(
+
+	
+    idFactura int not null auto_increment,
+
+	    numFactura int not null,
+  
+     	    fechaFactura int not null,
+
+	    idPersona int not null,
+
+	    iva decimal not null,
+   
+	    total decimal not null,
+	
+    primary key (idFactura),
+ 
+	    constraint idPersona foreign key (idPersona) references personas (idPersona)
+
+);
+
+CREATE TABLE DetalleFacturas(
+	
+
+	    idDetalleFactura int not null auto_increment,
+ 
+	    idFactura int not null,
+   
+	    nombreProducto varchar (20) not null,
+
+   	    precio decimal not null,
+  
+  	    cantidad int not null,
+
+    	    valorTotal decimal not null,
+
+	    primary key (idDetalleFactura),
+
+	    constraint idFactura foreign key (idFactura) references  facturas (idFactura)
+);
+
