@@ -1,0 +1,74 @@
+CREATE DATABASE Pruebas;
+
+-- CREACION DE TABLAS
+CREATE TABLE Carros (
+
+
+    idCarros int not null,
+
+    marca varchar(20) not null,
+
+    modelo varchar(20) not null,
+
+    año int
+
+);
+
+
+CREATE TABLE Reg_Carros (
+
+    idRegCarros int not null,
+
+    marca varchar(20) not null,
+
+    modelo varchar(20) not null,
+
+    año int
+
+);
+
+
+-- FUNCION TRIGGERS
+CREATE TRIGGER Carros_AI after insert on Carros for each row insert into reg_carros (idRegCarros, modelo, marca, año)
+values (new.idCarros, new.modelo, new.marca, new.año) 
+
+--INSERTAR DATOS
+INSERT INTO carros (idCarros, modelo, marca, año)
+VALUES (1,'Mazda','BT50',2018),
+(2,'Chevrolet','Aveo Famili',2019),
+(3,'TOYOTA','Hilux',2019),
+
+(4,'Fiat','Uno',2018)
+
+-- COMPROBAR SI LOS DATOS FUERON INGRESADOS
+SELECT * FROM carros;
+SELECT * FROM reg_carros;
+
+
+create table carros_actualizar (
+
+    idAntCarros int not null,
+
+    antModelo varchar(20),
+   
+    antMarca varchar(20),
+
+    antAño int,
+
+    idNueCarros int not null,
+    nueModelo varchar(20),
+
+    nueMarca varchar(20),
+
+    nueAño int
+
+);
+
+
+--ACTUALIZAR TRIGGERS
+CREATE TRIGGER ACTUALIZA_CARROS_BU BEFORE UPDATE ON Carros 
+FOR EACH ROW
+INSERT INTO carros_actualizar (idAntCarros, antModelo, antMarca, antAño, idNueCarros, nueModelo, nueMarca, nueAño) 
+VALUES (old.idCarros, old.modelo, old.marca, old.año, new.idCarros, new.modelo, new.marca, new.año)
+
+update carros 	set año= año+1  where idCarros = 1
